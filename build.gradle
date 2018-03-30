@@ -1,0 +1,16 @@
+group 'com.tsingyun'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    maven {
+        url 'http://maven.solarule.cn/artifactory/libs-release'
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
