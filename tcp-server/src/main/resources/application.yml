@@ -1,0 +1,25 @@
+spring:
+  profiles:
+    active: dev
+  output:
+      ansi:
+        enabled: always
+
+---
+spring:
+  profiles: dev
+
+logging:
+  level:
+#    root: warn
+    com.tsingyun: info
+    com.tsingyun.service: debug
+
+---
+spring:
+  profiles: prod
+
+logging:
+  level:
+    root: warn
+    com.tsingyun: INFO

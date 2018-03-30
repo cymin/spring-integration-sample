@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:int="http://www.springframework.org/schema/integration"
+       xmlns:int-ip="http://www.springframework.org/schema/integration/ip"
+       xmlns:int-event="http://www.springframework.org/schema/integration/event"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/integration/ip http://www.springframework.org/schema/integration/ip/spring-integration-ip.xsd
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/integration/event http://www.springframework.org/schema/integration/event/spring-integration-event.xsd">
+
+    <!-- default (de)serializer  -->
+    <!--<bean id="deserializer" class="org.springframework.integration.ip.tcp.serializer.ByteArrayCrLfSerializer"/>-->
+
+    <int-ip:tcp-connection-factory id="server"
+                                   type="server"
+                                   using-nio="false"
+                                   host="0.0.0.0"
+                                   single-use="false"
+                                   port="${tcp.port:10000}"
+                                   task-executor="exec"
+                                   lookup-host="false"
+                                   so-timeout="20000"
+                                   so-keep-alive="true"
+                                   so-tcp-no-delay="true"
+    />
+
+<!--    <int-ip:tcp-inbound-gateway id="gateway"
+                                request-channel="serverSideChannel"
+                                connection-factory="server"
+                                reply-timeout="0"
+    />-->
+
+    <int-ip:tcp-inbound-channel-adapter id="tcpReceiver"
+                                        channel="serverSideChannel"
+                                        connection-factory="server"
+                                        auto-startup="true"
+    />
+
+    <int:channel id="serverSideChannel">
+        <int:queue/>
+    </int:channel>
+
+    <task:executor id="exec" pool-size="10"/>
+</beans>

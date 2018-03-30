@@ -1,2 +1,3 @@
 rootProject.name = 'tcp-demo'
 include 'tcp-client'
+include 'tcp-server'

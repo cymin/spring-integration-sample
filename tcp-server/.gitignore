@@ -1,0 +1,55 @@
+### IntelliJ
+/.idea/
+/*.iml
+out/
+.settings
+.setting
+
+### Gradle
+.gradle
+build/
+/classes/
+/bin/
+.gradletasknamecache
+
+### Java template
+*.class
+
+### Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+### mpeltonen/sbt-idea plugin
+.idea_modules/
+
+### eclipse
+*.swp
+.classpath
+.project
+
+### File-based project format:
+*.iws
+
+### OSX template
+.DS_Store
+.AppleDouble
+.LSOverride
+
+### rebel plugin
+rebel.xml
+
+### Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+### Windows shortcuts
+*.lnk
+
+.springBeans
+/logs/
+node_modules
+*.ipr
+*.map
+npm-debug.log
